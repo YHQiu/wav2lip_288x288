@@ -1,12 +1,10 @@
-numpy
+numpy==1.26.4
+numba==0.59.1
 librosa==0.10.2
 opencv-contrib-python==4.8.1.78
 opencv-python==4.8.1.78
-numba
-#torch==1.1.0
-#torchvision==0.3.0
 tqdm==4.45.0
-pyarrow
-pandas
-lws
+pyarrow==16.0.0
+pandas==2.2.2
+lws==1.2.8
 # pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
