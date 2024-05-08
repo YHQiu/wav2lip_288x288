@@ -3,7 +3,7 @@ numba==0.59.1
 librosa==0.7.0
 opencv-contrib-python==4.8.1.78
 opencv-python==4.8.1.78
-tqdm==4.45.0
+tqdm==4.57.0
 pyarrow==16.0.0
 pandas==2.2.2
 lws==1.2.8
