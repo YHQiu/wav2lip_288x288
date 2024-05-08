@@ -13,7 +13,9 @@ def get_image_list(file_list_txt):
 		# 获取目录下所有文件的完整路径
 		if os.path.isdir(file_path):
 			files_in_dir = [os.path.join(file_path, filename) for filename in os.listdir(file_path)]
-			result.extend(files_in_dir)
+			# 检查目录中是否存在.wav结尾的文件
+			if any(file.endswith('.wav') for file in files_in_dir):
+				result.extend(files_in_dir)
 	return result
 
 class HParams:
