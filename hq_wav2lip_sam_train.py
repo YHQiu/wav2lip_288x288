@@ -7,7 +7,7 @@ import pandas as pd
 import time
 import datetime
 from lpips import LPIPS
-from models import SyncNet_color as SyncNet
+from models import SyncNet_color_384 as SyncNet
 from models import Wav2Lip_SAM as Wav2Lip, NLayerDiscriminator
 import audio
 import torchvision.transforms as T
