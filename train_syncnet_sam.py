@@ -107,10 +107,9 @@ class Dataset(object):
             vidname = self.all_videos[idx]
             img_names = list(glob(join(vidname, '*.jpg')))
                 
-            print("len(img_names)):", len(img_names))
+            #print("len(img_names)):", len(img_names))
             if len(img_names) <= 3 * syncnet_T:
                 continue
-            print(f"{img_names[0]}")
             img_name = random.choice(img_names)
             wrong_img_name = random.choice(img_names)
             
@@ -122,6 +121,7 @@ class Dataset(object):
                     break
             if count_same > 10:
                 continue
+            print("call 1")
             
             if random.choice([True, False]):
                 y = torch.ones(1).float()
@@ -129,12 +129,12 @@ class Dataset(object):
             else:
                 y = torch.zeros(1).float()
                 chosen = wrong_img_name
-
+            print("call 2")
             window_fnames = self.get_window(chosen)
             if window_fnames is None:
                 # print("window_fnames")
                 continue
-
+            print("call 3")
             window = []
             all_read = True
             is_flip = random.random() < 0.5
@@ -154,7 +154,7 @@ class Dataset(object):
             if not all_read:
                 print("if not all_read:")
                 continue
-
+            print("call 4")
 
             try:
                 mel_out_path = join(vidname, "mel.npy")
@@ -171,7 +171,7 @@ class Dataset(object):
             except Exception as e:
                 # print("mel", vidname)
                 continue
-
+            print("call 5")
             mel = self.crop_audio_window(orig_mel.copy(), img_name)
 
             # mel augmentation
@@ -183,7 +183,7 @@ class Dataset(object):
             if (mel.shape[0] != syncnet_mel_step_size):
                 # print("Mel shape")
                 continue
-
+            print("call 6")
             # H x W x 3 * T
             # x = np.concatenate(window, axis=2) / 255. # [0, 1]
             x = (np.concatenate(window, axis=2) / 255.0)
