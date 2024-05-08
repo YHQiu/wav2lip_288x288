@@ -383,7 +383,7 @@ def run():
     if args.syncnet_batch_size is not None:
         hparams.set_hparam(args.syncnet_batch_size)
     else:
-        hparams.set_hparam("syncnet_batch_size", 16)
+        hparams.set_hparam("syncnet_batch_size", 1)
     train_data_loader = data_utils.DataLoader(
         train_dataset, batch_size=hparams.syncnet_batch_size, shuffle=True,
         num_workers=hparams.num_workers,
