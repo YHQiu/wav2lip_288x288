@@ -191,11 +191,11 @@ class Dataset(object):
             if window is None:
                 print(f"windows is None")
                 continue
-            print(f"call 1")
+
             wrong_window, h, w, c = self.read_wrong_window(wrong_window_fnames, is_flip)
             if wrong_window is None:
                 continue
-            print(f"call 2")
+
             try:
                 mel_out_path = join(vidname, "mel.npy")
                
@@ -227,11 +227,11 @@ class Dataset(object):
             if (mel.shape[0] != syncnet_mel_step_size):
                 # print("Mel shape", vidname)
                 continue
-            print(f"call 3")
+
             indiv_mels = self.get_segmented_mels(orig_mel.copy(), img_name)
             if indiv_mels is None:
                 continue
-            print(f"call 4")
+
             # ground truth images
             window = self.prepare_window(window)
             y = window.copy()
@@ -245,6 +245,7 @@ class Dataset(object):
             mel = torch.FloatTensor(mel.T).unsqueeze(0)
             indiv_mels = torch.FloatTensor(indiv_mels).unsqueeze(1)
             y = torch.FloatTensor(y)
+            print("call 5")
             return x, indiv_mels, mel, y, vidname
 
 
