@@ -172,7 +172,7 @@ class Dataset(object):
             vidname = self.all_videos[idx]
             img_names = list(glob(join(vidname, '*.jpg')))
             if len(img_names) <= 3 * syncnet_T:
-                # print("Len", vidname)
+                print("Len", vidname)
                 continue
             img_name = random.choice(img_names)
             id_img_name = self.get_frame_id(img_name)
@@ -182,14 +182,14 @@ class Dataset(object):
                 
                 wrong_img_name = random.choice(img_names)
                 id_wrong_img_name = self.get_frame_id(wrong_img_name)
-                
-            
+
             window_fnames = self.get_window(img_name)
             wrong_window_fnames = self.get_window(wrong_img_name)
             
             window, h, w, c  = self.read_window(window_fnames, is_flip)
 
             if window is None:
+                print(f"windows is None")
                 continue
             print(f"call 1")
             wrong_window, h, w, c = self.read_wrong_window(wrong_window_fnames, is_flip)
