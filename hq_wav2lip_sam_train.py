@@ -598,7 +598,7 @@ def run():
     train_dataset = Dataset('filelists/train.txt')
     test_dataset = Dataset('filelists/test.txt')
 
-    hparams.set_hparam('batch_size', 4)
+    hparams.set_hparam('batch_size', 2)
     hparams.set_hparam('syncnet_wt', 0.03)
 
     train_data_loader = data_utils.DataLoader(
