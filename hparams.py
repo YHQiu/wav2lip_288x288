@@ -14,6 +14,7 @@ def get_image_list(file_list_txt):
 		if os.path.isdir(file_path):
 			files_in_dir = [os.path.join(file_path, filename) for filename in os.listdir(file_path)]
 			result.extend(files_in_dir)
+	print(result)
 	return result
 
 class HParams:

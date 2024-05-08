@@ -213,7 +213,8 @@ def train(device, model, train_data_loader, test_data_loader, optimizer,
     while global_epoch < nepochs:
         st_e = time()
         try:
-            print('Starting Epoch: {}'.format(global_epoch))
+            print('Starting Epoch: {} train_data_loader {}'.format(global_epoch, len(train_data_loader)))
+
             running_loss = 0.
             for step, (x, mel, y) in enumerate(train_data_loader):
                 
