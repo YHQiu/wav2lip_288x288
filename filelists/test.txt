@@ -1,1 +1,2 @@
+data_root/lrs2_preprocessed/0000
 data_root/lrs2_preprocessed/0007

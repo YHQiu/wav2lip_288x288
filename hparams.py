@@ -16,8 +16,9 @@ def get_image_list(file_list_txt):
 			# 检查目录中是否存在.wav结尾的文件
 			for files in files_in_dir:
 				if any(file.endswith('.wav') for file in os.listdir(files)):
-					print(f"{files}")
 					result.append(files)
+		else:
+			print(file_path)
 
 	return result
 
