@@ -170,7 +170,7 @@ class Dataset(object):
                     with open(mel_out_path, "wb") as f:
                         np.save(f, orig_mel)
             except Exception as e:
-                print(f"except: {vidname} {e}")
+                # print(f"except: {vidname} {e}")
                 # print("mel", vidname)
                 continue
             mel = self.crop_audio_window(orig_mel.copy(), img_name)
