@@ -6,7 +6,7 @@ import datetime
 import math
 import random
 
-from models import SyncNet_color_384 as SyncNet
+from models import SyncNet_color as SyncNet
 import audio
 import pandas as pd
 import torch
@@ -43,7 +43,8 @@ best_loss = 1000
 print('use_cuda: {}'.format(use_cuda))
 
 syncnet_T = 5
-syncnet_mel_step_size = 16
+# syncnet_mel_step_size = 16
+syncnet_mel_step_size = 4
 format_video = 'mov'
 hparams.set_hparam("img_size", 288)
 
