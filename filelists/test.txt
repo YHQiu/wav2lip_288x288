@@ -1,1 +1,1 @@
-data_root/lrs2_preprocessed/test
+data_root/lrs2_preprocessed/0007
