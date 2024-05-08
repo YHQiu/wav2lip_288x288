@@ -47,10 +47,11 @@ best_loss = 10000
 print('use_cuda: {}'.format(use_cuda))
 
 syncnet_T = 5
-syncnet_mel_step_size = 16
+syncnet_mel_step_size = 4
 disc_iter_start = 30000
 sync_iter_start = 250000
-hparams.set_hparam('img_size', 384)
+# hparams.set_hparam('img_size', 384)
+hparams.set_hparam('img_size', 288)
 
 def mask_mel(crop_mel):
     block_size = 0.1

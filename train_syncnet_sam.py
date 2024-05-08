@@ -6,7 +6,7 @@ import datetime
 import math
 import random
 
-from models import SyncNet_color as SyncNet
+from models import SyncNet_color_384 as SyncNet
 import audio
 import pandas as pd
 import torch
@@ -43,10 +43,9 @@ best_loss = 1000
 print('use_cuda: {}'.format(use_cuda))
 
 syncnet_T = 5
-# syncnet_mel_step_size = 16
-syncnet_mel_step_size = 1
+syncnet_mel_step_size = 16
 format_video = 'mov'
-hparams.set_hparam("img_size", 288)
+hparams.set_hparam("img_size", 384)
 
 # mel augmentation
 def mask_mel(crop_mel):
@@ -383,7 +382,7 @@ def run():
     if args.syncnet_batch_size is not None:
         hparams.set_hparam(args.syncnet_batch_size)
     else:
-        hparams.set_hparam("syncnet_batch_size", 1)
+        hparams.set_hparam("syncnet_batch_size", 64)
     train_data_loader = data_utils.DataLoader(
         train_dataset, batch_size=hparams.syncnet_batch_size, shuffle=True,
         num_workers=hparams.num_workers,
