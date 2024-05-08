@@ -122,7 +122,6 @@ class Dataset(object):
                     break
             if count_same > 10:
                 continue
-            print("call 1")
             
             if random.choice([True, False]):
                 y = torch.ones(1).float()
@@ -130,12 +129,12 @@ class Dataset(object):
             else:
                 y = torch.zeros(1).float()
                 chosen = wrong_img_name
-            print("call 2")
+
             window_fnames = self.get_window(chosen)
             if window_fnames is None:
                 # print("window_fnames")
                 continue
-            print("call 3")
+
             window = []
             all_read = True
             is_flip = random.random() < 0.5
@@ -155,7 +154,6 @@ class Dataset(object):
             if not all_read:
                 print("if not all_read:")
                 continue
-            print("call 4")
 
             try:
                 mel_out_path = join(vidname, "mel.npy")
@@ -223,13 +221,11 @@ def train(device, model, train_data_loader, test_data_loader, optimizer,
             running_loss = 0.
             for step, (x, mel, y) in enumerate(train_data_loader):
 
-                print(f"train step 1")
                 st = time()
                 model.train()
                 optimizer.zero_grad()
 
                 x = x.to(device)
-                print(f"train step 2")
             
                 mel = mel.to(device)
                 y = y.to(device)
@@ -237,8 +233,6 @@ def train(device, model, train_data_loader, test_data_loader, optimizer,
                 loss = cosine_loss(a, v, y)
                 loss.backward()
                 optimizer.step()
-
-                print(f"train step 3")
 
                 d = nn.functional.cosine_similarity(a, v)
 
