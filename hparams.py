@@ -8,8 +8,13 @@ def get_image_list(file_list_txt):
 			line = line.strip()
 			if ' ' in line: line = line.split()[0]
 			filelist.append(line)
-
-	return filelist
+	result = []
+	for file_path in filelist:
+		# 获取目录下所有文件的完整路径
+		if os.path.isdir(file_path):
+			files_in_dir = [os.path.join(file_path, filename) for filename in os.listdir(file_path)]
+			result.extend(files_in_dir)
+	return result
 
 class HParams:
 	def __init__(self, **kwargs):
