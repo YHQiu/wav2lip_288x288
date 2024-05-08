@@ -120,6 +120,7 @@ class Dataset(object):
                     img = cv2.flip(img, 1)
                 img = cv2.resize(img, (hparams.img_size, hparams.img_size))
             except Exception as e:
+                print(e)
                 return None
 
             window.append(img)
@@ -170,7 +171,6 @@ class Dataset(object):
             is_flip = random.random() > 0.7
             vidname = self.all_videos[idx]
             img_names = list(glob(join(vidname, '*.jpg')))
-            print("call 0")
             if len(img_names) <= 3 * syncnet_T:
                 # print("Len", vidname)
                 continue
