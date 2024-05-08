@@ -207,11 +207,11 @@ class Dataset(object):
                     if not os.path.isfile(wavpath):
                         au_names = list(glob(join(vidname, '*.wav')))
                         if len(au_names) == 0:
-                            print(f"{vidname}")
+                            # print(f"{vidname}")
                             continue
                         au_path = au_names[0]
                         status = os.system(f"ffmpeg -i {au_path} -ar 16000 {wavpath}")
-
+                    print(f"{wavpath}")
                     wav = audio.load_wav(wavpath, hparams.sample_rate)
 
                     orig_mel = audio.melspectrogram(wav).T  # 0.2 -> 0.9s
