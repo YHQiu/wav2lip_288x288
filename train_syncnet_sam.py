@@ -164,6 +164,8 @@ class Dataset(object):
                         orig_mel = np.load(f)
                 else:
                     wavpath = os.path.join(vidname, "synced.wav")
+                    if not os.path.isfile(wavpath):
+                        wavpath = os.path.join(vidname, "audio.wav")
                     wav = audio.load_wav(wavpath, hparams.sample_rate)
 
                     orig_mel = audio.melspectrogram(wav).T  # 0.2 -> 0.9s
