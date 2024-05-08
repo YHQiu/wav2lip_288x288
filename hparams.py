@@ -97,6 +97,7 @@ hparams = HParams(
 	disc_wt=0.07,
 	disc_initial_learning_rate=1e-4,
 	num_checkpoints=20,
+	log_interval=10,
 )
 
 
