@@ -14,8 +14,10 @@ def get_image_list(file_list_txt):
 		if os.path.isdir(file_path):
 			files_in_dir = [os.path.join(file_path, filename) for filename in os.listdir(file_path)]
 			# 检查目录中是否存在.wav结尾的文件
-			if any(file.endswith('.wav') for file in os.listdir(files_in_dir)):
-				result.extend(files_in_dir)
+			for files in files_in_dir:
+				if any(file.endswith('.wav') for file in os.listdir(files)):
+					result.append(files)
+
 	return result
 
 class HParams:
