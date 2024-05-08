@@ -106,6 +106,11 @@ class Wav2Lip_SAM(nn.Module):
                 Conv2d(512, 1024, kernel_size=3, stride=1, padding=0),
                 Conv2d(1024, 1024, kernel_size=1, stride=1, padding=0))
                     ##################
+            for p in self.audio_encoder.parameters():
+                p.requires_grad = False
+            self.audio_refine = nn.Sequential(
+                Conv2d(1024, 1024, kernel_size=1, stride=1, padding=0),
+                Conv2d(1024, 1024, kernel_size=1, stride=1, padding=0))
         else:
             self.audio_encoder = audio_encoder
 
