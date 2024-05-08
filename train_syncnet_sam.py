@@ -218,12 +218,14 @@ def train(device, model, train_data_loader, test_data_loader, optimizer,
 
             running_loss = 0.
             for step, (x, mel, y) in enumerate(train_data_loader):
-                
+
+                print(f"train step 1")
                 st = time()
                 model.train()
                 optimizer.zero_grad()
 
                 x = x.to(device)
+                print(f"train step 2")
             
                 mel = mel.to(device)
                 y = y.to(device)
@@ -231,6 +233,8 @@ def train(device, model, train_data_loader, test_data_loader, optimizer,
                 loss = cosine_loss(a, v, y)
                 loss.backward()
                 optimizer.step()
+
+                print(f"train step 3")
 
                 d = nn.functional.cosine_similarity(a, v)
 
