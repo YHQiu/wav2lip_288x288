@@ -215,7 +215,7 @@ class Dataset(object):
                         np.save(f, orig_mel)
             except Exception as e:
                 continue
-
+            print(f"{vidname}")
             mel = self.crop_audio_window(orig_mel.copy(), img_name)
 
             if (mel.shape[0] != syncnet_mel_step_size):
@@ -305,9 +305,9 @@ def train(device, model, disc, train_data_loader, test_data_loader, optimizer, d
     while global_epoch < nepochs:
         try:
             stop_training = False
-            # print('Starting Epoch: {}'.format(global_epoch))
+            print('Starting Epoch: {}'.format(global_epoch))
 
-            running_sync_loss, running_l1_loss, running_perceptual_loss = 0., 0., 0., 0.
+            running_sync_loss, running_l1_loss, running_perceptual_loss = 0., 0., 0.
             running_disc_real_loss, running_disc_fake_loss = 0., 0.
             running_vgg_loss= 0.
             st = time.time()
