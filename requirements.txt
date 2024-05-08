@@ -1,5 +1,5 @@
-numpy==1.26.4
-numba==0.59.1
+numpy==1.17.1
+numba==0.48
 librosa==0.7.0
 opencv-contrib-python==4.8.1.78
 opencv-python==4.8.1.78
