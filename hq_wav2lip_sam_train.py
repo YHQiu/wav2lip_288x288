@@ -596,12 +596,12 @@ def run():
     
     train_data_loader = data_utils.DataLoader(
         train_dataset, batch_size=hparams.batch_size, shuffle=True,
-        num_workers=hparams.num_workers, drop_last=True)
+        num_workers=hparams.num_workers, drop_last=True, max_split_size_mb=2048)
 
     # TODO: uncomment this
     test_data_loader = data_utils.DataLoader(
         test_dataset, batch_size=hparams.batch_size,
-        num_workers=1, drop_last=True)
+        num_workers=1, drop_last=True, max_split_size_mb=2048)
 
     device = torch.device("cuda" if use_cuda else "cpu")
 
