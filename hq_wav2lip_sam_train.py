@@ -172,7 +172,7 @@ class Dataset(object):
             vidname = self.all_videos[idx]
             img_names = list(glob(join(vidname, '*.jpg')))
             if len(img_names) <= 3 * syncnet_T:
-                print("Len", vidname)
+                # print("Len", vidname)
                 continue
             img_name = random.choice(img_names)
             id_img_name = self.get_frame_id(img_name)
@@ -189,7 +189,7 @@ class Dataset(object):
             window, h, w, c  = self.read_window(window_fnames, is_flip)
 
             if window is None:
-                print(f"windows is None")
+                # print(f"windows is None")
                 continue
 
             wrong_window, h, w, c = self.read_wrong_window(wrong_window_fnames, is_flip)
@@ -221,7 +221,7 @@ class Dataset(object):
             except Exception as e:
                 # print(f"{e}")
                 continue
-            print(f"{vidname}")
+            # print(f"{vidname}")
             mel = self.crop_audio_window(orig_mel.copy(), img_name)
 
             if (mel.shape[0] != syncnet_mel_step_size):
@@ -245,7 +245,7 @@ class Dataset(object):
             mel = torch.FloatTensor(mel.T).unsqueeze(0)
             indiv_mels = torch.FloatTensor(indiv_mels).unsqueeze(1)
             y = torch.FloatTensor(y)
-            print("call 5")
+            # print("call 5")
             return x, indiv_mels, mel, y, vidname
 
 
