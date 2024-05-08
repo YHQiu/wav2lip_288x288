@@ -1,0 +1,6 @@
+data_root/lrs2_preprocessed/00001
+data_root/lrs2_preprocessed/00002
+data_root/lrs2_preprocessed/00003
+data_root/lrs2_preprocessed/00004
+data_root/lrs2_preprocessed/00005
+data_root/lrs2_preprocessed/00006

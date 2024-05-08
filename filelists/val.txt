@@ -1,0 +1,2 @@
+data_root/lrs2_preprocessed/00007
+data_root/lrs2_preprocessed/00008
