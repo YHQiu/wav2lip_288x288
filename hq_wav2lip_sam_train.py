@@ -165,9 +165,7 @@ class Dataset(object):
 
     def __getitem__(self, idx):
         while 1:
-            print(idx)
             idx = random.randint(0, len(self.all_videos) - 1)
-            print(idx)
             is_silence = random.random() > 0.5
             is_flip = random.random() > 0.7
             vidname = self.all_videos[idx]
@@ -189,13 +187,14 @@ class Dataset(object):
             wrong_window_fnames = self.get_window(wrong_img_name)
             
             window, h, w, c  = self.read_window(window_fnames, is_flip)
+
             if window is None:
                 continue
-            
+            print(f"call 1")
             wrong_window, h, w, c = self.read_wrong_window(wrong_window_fnames, is_flip)
             if wrong_window is None:
                 continue
-            
+            print(f"call 2")
             try:
                 mel_out_path = join(vidname, "mel.npy")
                
@@ -227,11 +226,11 @@ class Dataset(object):
             if (mel.shape[0] != syncnet_mel_step_size):
                 # print("Mel shape", vidname)
                 continue
-
+            print(f"call 3")
             indiv_mels = self.get_segmented_mels(orig_mel.copy(), img_name)
             if indiv_mels is None:
                 continue
-
+            print(f"call 4")
             # ground truth images
             window = self.prepare_window(window)
             y = window.copy()
