@@ -135,7 +135,6 @@ class Dataset(object):
             wrong_window_fnames = self.get_window(wrong_img_name)
             if window_fnames is None or wrong_window_fnames is None:
                 continue
-
             window = self.read_window(window_fnames)
             if window is None:
                 continue
