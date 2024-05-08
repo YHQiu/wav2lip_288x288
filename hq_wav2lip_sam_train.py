@@ -205,7 +205,8 @@ class Dataset(object):
                     
                     if not os.path.isfile(wavpath):
                         au_names = list(glob(join(vidname, '*.wav')))
-                        print(f"{vidname} {au_names}")
+                        if len(au_names) == 0:
+                            continue
                         au_path = au_names[0]
                         status = os.system(f"ffmpeg -i {au_path} -ar 16000 {wavpath}")
 
