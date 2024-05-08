@@ -173,7 +173,6 @@ class Dataset(object):
                 print(e)
                 # print("mel", vidname)
                 continue
-            print("call 5")
             mel = self.crop_audio_window(orig_mel.copy(), img_name)
 
             # mel augmentation
@@ -185,7 +184,6 @@ class Dataset(object):
             if (mel.shape[0] != syncnet_mel_step_size):
                 # print("Mel shape")
                 continue
-            print("call 6")
             # H x W x 3 * T
             # x = np.concatenate(window, axis=2) / 255. # [0, 1]
             x = (np.concatenate(window, axis=2) / 255.0)

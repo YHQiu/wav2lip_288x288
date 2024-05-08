@@ -10,8 +10,9 @@ from hparams import hparams as hp
 # def load_wav(path, sr):
 #     return librosa.core.load(path, sr=sr)[0]
 def load_wav(path, sr):
-    audio, _ = librosa.load(path, sr=sr)
-    return audio
+    audio_, sr = librosa.load(path, sr=sr)
+    print(sr)
+    return audio_
 
 def save_wav(wav, path, sr):
     wav *= 32767 / max(0.01, np.max(np.abs(wav)))
