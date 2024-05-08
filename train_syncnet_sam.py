@@ -32,6 +32,7 @@ parser.add_argument('--checkpoint_dir', help='Save checkpoints to this directory
 parser.add_argument('--exp_num', help='ID number of the experiment', required=False, default="actor", type=str)
 parser.add_argument('--history_train', help='Save history training', required=False,default="logs/syncnet/",type=str)
 parser.add_argument('--checkpoint_path', help='Resumed from this checkpoint', default=None, type=str)
+parser.add_argument('--syncnet_batch_size', default=None, required=False, type=int)
 args = parser.parse_args()
 
 
@@ -376,7 +377,10 @@ def run():
 
     train_dataset = Dataset('filelists/train.txt')
     test_dataset = Dataset('filelists/test.txt')
-    hparams.set_hparam("syncnet_batch_size", 64)
+    if args.syncnet_batch_size is not None:
+        hparams.set_hparam(args.syncnet_batch_size)
+    else:
+        hparams.set_hparam("syncnet_batch_size", 64)
     train_data_loader = data_utils.DataLoader(
         train_dataset, batch_size=hparams.syncnet_batch_size, shuffle=True,
         num_workers=hparams.num_workers,
