@@ -44,7 +44,7 @@ print('use_cuda: {}'.format(use_cuda))
 
 syncnet_T = 5
 # syncnet_mel_step_size = 16
-syncnet_mel_step_size = 4
+syncnet_mel_step_size = 1
 format_video = 'mov'
 hparams.set_hparam("img_size", 288)
 
@@ -383,7 +383,7 @@ def run():
     if args.syncnet_batch_size is not None:
         hparams.set_hparam(args.syncnet_batch_size)
     else:
-        hparams.set_hparam("syncnet_batch_size", 64)
+        hparams.set_hparam("syncnet_batch_size", 16)
     train_data_loader = data_utils.DataLoader(
         train_dataset, batch_size=hparams.syncnet_batch_size, shuffle=True,
         num_workers=hparams.num_workers,
