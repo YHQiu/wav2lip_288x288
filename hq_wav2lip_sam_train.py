@@ -165,7 +165,9 @@ class Dataset(object):
 
     def __getitem__(self, idx):
         while 1:
+            print(idx)
             idx = random.randint(0, len(self.all_videos) - 1)
+            print(idx)
             is_silence = random.random() > 0.5
             is_flip = random.random() > 0.7
             vidname = self.all_videos[idx]
