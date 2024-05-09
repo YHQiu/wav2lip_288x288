@@ -11,6 +11,7 @@ def inference(checkpoint_path, face, audio):
     # Call the inference.py module using subprocess
     output_name = f"{uuid.uuid4()}.mp4"
     command = f"python inference.py --checkpoint_path {checkpoint_path} --face {face} --audio {audio} --outfile {os.path.join(output, output_name)}"
+    print(command)
     subprocess.call(command, shell=True)
     # Assuming inference.py outputs the result file path
     return os.path.join(output, output_name)
