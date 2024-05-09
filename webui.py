@@ -14,17 +14,23 @@ def inference(checkpoint_path, face, audio):
     # Assuming inference.py outputs the result file path
     return os.path.join(output, output_name)
 
+def get_checkpoints():
+    checkpoints_dir = "checkpoints"
+    checkpoints = [os.path.join(checkpoints_dir, f) for f in os.listdir(checkpoints_dir) if f.endswith(".pth")]
+    return checkpoints
+
 with gr.Blocks() as app:
-        model_path = gr.inputs.Textbox(label="Checkpoint Path")
-        face = gr.Video(label="Face")
-        audio = gr.Audio(label="Audio")
-        show = gr.Video(label="Face Show")
-        btn = gr.Button()
-        btn.click(
-            fn=inference,
-            inputs=[model_path, face, audio],
-            outputs=[show]
-        )
+    checkpoints = get_checkpoints()
+    model_path = gr.Dropdown(label="Checkpoint Path", choices=checkpoints)
+    face = gr.Video(label="Face")
+    audio = gr.Audio(label="Audio")
+    show = gr.Video(label="Face Show")
+    btn = gr.Button()
+    btn.click(
+        fn=inference,
+        inputs=[model_path, face, audio],
+        outputs=[show]
+    )
 
 if __name__ == "__main__":
     app.launch(server_name='0.0.0.0', server_port=8108)
