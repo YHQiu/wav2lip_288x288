@@ -14,9 +14,12 @@ def inference(checkpoint_path, face, audio):
     # Assuming inference.py outputs the result file path
     return os.path.join(output, output_name)
 
-def get_checkpoints():
-    checkpoints_dir = "checkpoints"
-    checkpoints = [os.path.join(checkpoints_dir, f) for f in os.listdir(checkpoints_dir) if f.endswith(".pth")]
+def get_checkpoints(checkpoints_dir):
+    checkpoints = []
+    for root, dirs, files in os.walk(checkpoints_dir):
+        for file in files:
+            if file.endswith(".pth"):
+                checkpoints.append(os.path.join(root, file))
     return checkpoints
 
 with gr.Blocks() as app:
