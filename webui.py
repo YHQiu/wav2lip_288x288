@@ -3,6 +3,7 @@ import subprocess
 import uuid
 import gradio as gr
 
+checkpoints_dir = "checkpoints"
 output = "output"
 os.makedirs(output, exist_ok=True)
 
@@ -23,7 +24,8 @@ def get_checkpoints(checkpoints_dir):
     return checkpoints
 
 with gr.Blocks() as app:
-    checkpoints = get_checkpoints()
+
+    checkpoints = get_checkpoints(checkpoints_dir)
     model_path = gr.Dropdown(label="Checkpoint Path", choices=checkpoints)
     face = gr.Video(label="Face")
     audio = gr.Audio(label="Audio")
