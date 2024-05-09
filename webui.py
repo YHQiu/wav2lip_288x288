@@ -29,7 +29,7 @@ with gr.Blocks() as app:
     checkpoints = get_checkpoints(checkpoints_dir)
     model_path = gr.Dropdown(label="Checkpoint Path", choices=checkpoints)
     face = gr.Video(label="Face")
-    audio = gr.Audio(label="Audio")
+    audio = gr.Audio(label="Audio", type="filepath")
     show = gr.Video(label="Face Show")
     btn = gr.Button()
     btn.click(
