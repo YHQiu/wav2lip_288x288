@@ -27,4 +27,4 @@ with gr.Blocks() as app:
         )
 
 if __name__ == "__main__":
-    app.launch(server_name='0.0.0.0', server_prot=8108)
+    app.launch(server_name='0.0.0.0', server_port=8108)
