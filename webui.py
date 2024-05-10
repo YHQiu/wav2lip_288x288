@@ -6,15 +6,16 @@ import gradio as gr
 checkpoints_dir = "checkpoints"
 output = "output"
 os.makedirs(output, exist_ok=True)
+root_dir = os.path.dirname(os.path.realpath(__file__))
 
 def inference(checkpoint_path, face, audio):
     # Call the inference.py module using subprocess
     output_name = f"{uuid.uuid4()}.mp4".replace("-", "")
-    command = f"python inference.py --checkpoint_path {checkpoint_path} --face {face} --audio {audio} --outfile {os.path.join(output, output_name)}"
+    command = f"python inference.py --checkpoint_path {checkpoint_path} --face {face} --audio {audio} --outfile {os.path.join(root_dir, output, output_name)}"
     print(command)
     subprocess.call(command, shell=True)
     # Assuming inference.py outputs the result file path
-    return os.path.join(output, output_name)
+    return os.path.join(root_dir, output, output_name)
 
 def get_checkpoints(checkpoints_dir):
     checkpoints = []
