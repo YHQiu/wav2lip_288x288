@@ -23,7 +23,7 @@ def get_checkpoints(checkpoints_dir):
     checkpoints = []
     for root, dirs, files in os.walk(checkpoints_dir):
         for file in files:
-            if file.endswith(".pth"):
+            if file.endswith(".pth") and 'gen_' in file:
                 checkpoints.append(os.path.join(root, file))
     return checkpoints
 
