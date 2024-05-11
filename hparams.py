@@ -9,6 +9,7 @@ def get_image_list(file_list_txt):
 			if ' ' in line: line = line.split()[0]
 			filelist.append(line)
 	result = []
+	error_size = 0
 	for file_path in filelist:
 		# 获取目录下所有文件的完整路径
 		if os.path.isdir(file_path):
@@ -17,9 +18,11 @@ def get_image_list(file_list_txt):
 			for files in files_in_dir:
 				if any(file.endswith('.wav') for file in os.listdir(files)):
 					result.append(files)
+				else:
+					error_size += 1
 		else:
 			print(file_path)
-	print(f"data size {len(result)}")
+	print(f"data size {len(result)} error size {error_size}")
 	return result
 
 class HParams:
