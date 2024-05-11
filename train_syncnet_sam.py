@@ -34,6 +34,7 @@ parser.add_argument('--history_train', help='Save history training', required=Fa
 parser.add_argument('--checkpoint_path', help='Resumed from this checkpoint', default=None, type=str)
 parser.add_argument('--syncnet_batch_size', default=None, required=False, type=int)
 args = parser.parse_args()
+args.data_type = 2 #五位数字则是1 普通数字则是2
 
 
 global_step = 0
@@ -81,8 +82,10 @@ class Dataset(object):
         vidname = dirname(start_frame)
         window_fnames = []
         for frame_id in range(start_id, start_id + syncnet_T):
-            # frame = join(vidname, f'{frame_id:05}.jpg')
-            frame = join(vidname, f'{frame_id}.jpg')
+            if args.data_type == 1:
+                frame = join(vidname, f'{frame_id:05}.jpg')
+            else:
+                frame = join(vidname, f'{frame_id}.jpg')
             if not isfile(frame):
                 return None
             window_fnames.append(frame)
@@ -377,8 +380,8 @@ def run():
 
     if not os.path.exists(checkpoint_dir): os.makedirs(checkpoint_dir)
 
-    train_dataset = Dataset('filelists/train.txt')
-    test_dataset = Dataset('filelists/test.txt')
+    train_dataset = Dataset('filelist/train.txt')
+    test_dataset = Dataset('filelist/test.txt')
     if args.syncnet_batch_size is not None:
         hparams.set_hparam(args.syncnet_batch_size)
     else:
