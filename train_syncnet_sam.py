@@ -33,6 +33,8 @@ parser.add_argument('--exp_num', help='ID number of the experiment', required=Fa
 parser.add_argument('--history_train', help='Save history training', required=False,default="logs/syncnet/",type=str)
 parser.add_argument('--checkpoint_path', help='Resumed from this checkpoint', default=None, type=str)
 parser.add_argument('--syncnet_batch_size', default=None, required=False, type=int)
+parser.add_argument('--lr', default=1e4, required=False, type=float)
+parser.add_argument('--batch_size', default=64, required=False, type=int)
 args = parser.parse_args()
 args.data_type = 2 #五位数字则是1 普通数字则是2
 
@@ -47,6 +49,8 @@ syncnet_T = 5
 syncnet_mel_step_size = 16
 format_video = 'mov'
 hparams.set_hparam("img_size", 384)
+hparams.set_hparam("syncnet_lr", args.lr)
+hparams.set_hparam("syncnet_batch_size", args.batch_size)
 
 # mel augmentation
 def mask_mel(crop_mel):
