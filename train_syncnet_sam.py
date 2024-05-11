@@ -253,8 +253,8 @@ def train(device, model, train_data_loader, test_data_loader, optimizer,
                     with torch.no_grad():
                         model.eval()
                         eval_loss = eval_model(test_data_loader, global_step, device, model, checkpoint_dir)
-                        # if eval_loss < 0.25:
-                        #     stop_training = True
+                        if eval_loss < 0.25:
+                            stop_training = True
                     save_checkpoint(model, optimizer, global_step, checkpoint_dir, global_epoch, eval_loss)
                     logger.log_metrics({
                         "train_loss": running_loss / (step + 1),
@@ -326,6 +326,7 @@ def save_checkpoint(model, optimizer, step, checkpoint_dir, epoch, loss_val):
     post_fix = f'checkpoint_{hparams.img_size}_{hparams.syncnet_batch_size}_{global_step:09d}_{date}.pth'
     if loss_val < best_loss:
         best_loss = loss_val
+        print(f"beat loss is {best_loss}")
         save_ckpt(model, optimizer, step, checkpoint_dir, epoch, f"best_syncnet_{args.exp_num}.pth")
 
     # last model
