@@ -386,10 +386,7 @@ def run():
 
     train_dataset = Dataset('filelist/train.txt')
     test_dataset = Dataset('filelist/test.txt')
-    if args.syncnet_batch_size is not None:
-        hparams.set_hparam(args.syncnet_batch_size)
-    else:
-        hparams.set_hparam("syncnet_batch_size", 64)
+    print(f"batch_size = {hparams.syncnet_batch_size}")
     train_data_loader = data_utils.DataLoader(
         train_dataset, batch_size=hparams.syncnet_batch_size, shuffle=True,
         num_workers=hparams.num_workers,
@@ -413,6 +410,7 @@ def run():
 
     optimizer = optim.Adam([p for p in model.parameters() if p.requires_grad],
                            lr=hparams.syncnet_lr)
+    print(f"lr = {hparams.syncnet_lr}")
 
     if checkpoint_path is not None:
         load_checkpoint(checkpoint_path, model, optimizer, reset_optimizer=False)
