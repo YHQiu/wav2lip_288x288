@@ -4,3 +4,5 @@ data_root/lrs2_preprocessed/0003
 data_root/lrs2_preprocessed/0004
 data_root/lrs2_preprocessed/0005
 data_root/lrs2_preprocessed/0006
+data_root/lrs2_preprocessed/0007
+data_root/lrs2_preprocessed/0008
